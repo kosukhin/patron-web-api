@@ -1,3 +1,4 @@
-import { HistoryNewPage } from "src/history-api/HistoryNewPage";
+import { HistoryCurrentPage } from "./HistoryCurrentPage";
+import { HistoryNewPage } from "./HistoryNewPage";
 
-export { HistoryNewPage };
+export { HistoryNewPage, HistoryCurrentPage };

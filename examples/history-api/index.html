@@ -1,11 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>History API</title>
 </head>
-<body>
 
+<body>
+    <div>router</div>
+    <ul>
+        <li>
+            <button onclick="newPage.receive({url: '/one', title: 'Первая страница'})">
+                One
+            </button>
+        </li>
+        <li>
+            <button onclick="newPage.receive({url: '/two', title: 'Вторая страница'})">
+                Two
+            </button>
+        </li>
+        <li>
+            <button onclick="newPage.receive({url: '/three', title: 'Третья страница'})">
+                Three
+            </button>
+        </li>
+    </ul>
+    <div>
+        <b class="result"></b>
+    </div>
+    <script type="module">
+        import { Source, Guest, Patron, GuestAware, GuestInTheMiddle } from 'https://cdn.jsdelivr.net/npm/patron-oop@1.4.0/dist/patron.mjs';
+        import { HistoryCurrentPage, HistoryNewPage } from 'http://127.0.0.1:8081/patron-web-api.mjs';
+
+        class Text {
+            constructor(selector) {
+                this.element = document.querySelector(selector);
+            }
+
+            receive(value) {
+                this.element.innerText = value;
+            }
+        }
+
+        const pageSource = new Source({});
+        const currentPage = new HistoryCurrentPage(pageSource);
+        currentPage.page(new Patron(new Guest((value) => {
+            console.log(`current page ${value}`);
+        })));
+        window.newPage = new HistoryNewPage(pageSource);
+
+        const title = new GuestAware((guest) => {
+            pageSource.receiving(
+                new GuestInTheMiddle(guest, (value) => {
+                    guest.receive(value.title ?? 'home');
+                })
+            );
+        });
+        title.receiving(new Patron(new Text('.result')));
+    </script>
 </body>
+
 </html>
