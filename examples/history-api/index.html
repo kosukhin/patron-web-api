@@ -43,10 +43,13 @@
             }
         }
 
-        const pageSource = new Source({});
+        const pageSource = new Source({
+            title: 'Главная',
+            url: '/'
+        });
         const currentPage = new HistoryCurrentPage(pageSource);
         currentPage.page(new Patron(new Guest((value) => {
-            console.log(`current page ${value}`);
+            console.log(`current page`, value);
         })));
         window.newPage = new HistoryNewPage(pageSource);
 

@@ -4,11 +4,14 @@ import { GuestType, SourceType } from "patron-oop";
 export class HistoryCurrentPage {
   public constructor(private pageSource: SourceType<HistoryPageDocument>) {
     window.addEventListener("popstate", (event) => {
-      pageSource.receive({
-        url: document.location,
-        title: "",
-        data: event.state,
-      });
+      const { state } = event;
+      if (state.url) {
+        pageSource.receive({
+          url: state.url,
+          title: "",
+          data: event.state,
+        });
+      }
     });
   }
 

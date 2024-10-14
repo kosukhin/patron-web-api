@@ -2,11 +2,14 @@ class HistoryCurrentPage {
   constructor(pageSource) {
     this.pageSource = pageSource;
     window.addEventListener("popstate", (event) => {
-      pageSource.receive({
-        url: document.location,
-        title: "",
-        data: event.state
-      });
+      const { state } = event;
+      if (state.url) {
+        pageSource.receive({
+          url: state.url,
+          title: "",
+          data: event.state
+        });
+      }
     });
   }
   page(guest) {
