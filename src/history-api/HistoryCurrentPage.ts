@@ -4,9 +4,7 @@ import { GuestType, SourceType } from "patron-oop";
 export class HistoryCurrentPage {
   public constructor(private pageSource: SourceType<HistoryPageDocument>) {}
 
-  public page(
-      guest: GuestType<HistoryPageDocument>
-  ) {
+  public page(guest: GuestType<HistoryPageDocument>) {
     this.pageSource.receiving(guest);
     window.addEventListener("popstate", (event) => {
       const { state } = event;
