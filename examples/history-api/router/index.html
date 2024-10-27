@@ -104,6 +104,7 @@
         routes,
     ) {
       const contentEl = document.querySelector(displaySelector);
+      const defaultRoute = routes.find(route => route.default);
       this.firstLoad(
           () => {
             this.#currentPage.page(new Patron((value) => {
@@ -112,7 +113,11 @@
                     basePath = basePath.replace('/#', '');
                     let currentUrl = value.url === '/' ? basePath + '/' : value.url;
                     currentUrl = currentUrl.replace('#', '').replace('//', '/');
-                    const route = routes.find(route => basePath + route.url === currentUrl);
+                    let route = routes.find(route => basePath + route.url === currentUrl);
+
+                    if (!route && defaultRoute) {
+                      route = defaultRoute;
+                    }
 
                     if (route) {
                       fetch(basePath + '/' + route.template).then(result => result.text()).then(template => {
@@ -162,11 +167,7 @@
           url: '/',
           template: 'main.html',
           page: new PageOne(),
-        },
-        {
-          url: '/index.html',
-          template: 'main.html',
-          page: new PageOne(),
+          default: true,
         },
         {
           url: '/two',
