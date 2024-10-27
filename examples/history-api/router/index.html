@@ -43,13 +43,12 @@
 <div class="page-content"></div>
 <script type="module">
   import 'https://cdn.jsdelivr.net/npm/patron-oop@1.10.0/dist/patron.min.js';
+  window.patronOop = window.GUEST_LIBRARY;
+
   import {HistoryCurrentPage, HistoryNewPage} from 'http://localhost:63342/patron-web-api/dist/patron-web-api.mjs';
 
   const {
-    give,
-    Patron,
     Source,
-    GuestChain,
   } = window.GUEST_LIBRARY;
 
   class PageOne {
@@ -73,114 +72,43 @@
     }
   }
 
-  class Route {
-    #currentPage;
-    #newPage;
-    #basePath;
+  import('https://cdn.jsdelivr.net/npm/patron-oop-components@1.3.0/dist/patron-components.min.js').then(() => {
+    console.log('ok');
+    const {
+      Route,
+    } = window.GUEST_LIBRARY.components;
 
-    constructor(basePath, currentPage, newPage) {
-      this.#currentPage = currentPage;
-      this.#newPage = newPage;
-      this.#basePath = basePath;
-    }
-
-    page(url) {
-      this.#basePath.receiving(
-          (basePath) => {
-            this.#newPage.receive({
-              url: `${basePath}${url}`,
-              title: 'Идет загрузка',
-              data: {
-                url: `${basePath}${url}`,
-                date: new Date().getTime(),
-              },
-            });
+    const pageSource = new Source({
+      title: 'Главная',
+      url: '/',
+    });
+    window.route = new Route(
+        new Source('/patron-web-api/examples/history-api/router/#'),
+        new HistoryCurrentPage(pageSource),
+        new HistoryNewPage(pageSource),
+    );
+    route.handleRoutes(
+        '.page-content',
+        [
+          {
+            url: '/',
+            template: 'main.html',
+            page: new PageOne(),
+            default: true,
           },
-      );
-    }
-
-    handleRoutes(
-        displaySelector,
-        routes,
-    ) {
-      const contentEl = document.querySelector(displaySelector);
-      const defaultRoute = routes.find(route => route.default);
-      this.firstLoad(
-          () => {
-            this.#currentPage.page(new Patron((value) => {
-              this.#basePath.receiving(
-                  (basePath) => {
-                    basePath = basePath.replace('/#', '');
-                    let currentUrl = value.url === '/' ? basePath + '/' : value.url;
-                    currentUrl = currentUrl.replace('#', '').replace('//', '/');
-                    let route = routes.find(route => basePath + route.url === currentUrl);
-
-                    if (!route && defaultRoute) {
-                      route = defaultRoute;
-                    }
-
-                    if (route) {
-                      fetch(basePath + '/' + route.template).then(result => result.text()).then(template => {
-                        contentEl.innerHTML = template;
-                        route.page?.mounted();
-                      });
-                    }
-                  },
-              );
-            }));
+          {
+            url: '/two',
+            template: 'two.html',
+            page: new PageTwo(),
           },
-      );
-    }
-
-    firstLoad(guest) {
-      const chain = new GuestChain();
-      this.#basePath.receiving(chain.receiveKey('basePath'));
-      this.#currentPage.page(chain.receiveKey('currentPage'));
-      chain.result(
-          ({basePath, currentPage}) => {
-            const correctUrl = location.href.replace(location.origin, '');
-
-            if (currentPage.url !== correctUrl) {
-              this.page(correctUrl.replace(basePath, ''));
-              setTimeout(() => {
-                give(null, guest);
-              });
-            }
+          {
+            url: '/three',
+            template: 'three.html',
+            page: new PageThree(),
           },
-      );
-    }
-  }
-
-  const pageSource = new Source({
-    title: 'Главная',
-    url: '/',
-  });
-  window.route = new Route(
-      new Source('/patron-web-api/examples/history-api/router/#'),
-      new HistoryCurrentPage(pageSource),
-      new HistoryNewPage(pageSource),
-  );
-  route.handleRoutes(
-      '.page-content',
-      [
-        {
-          url: '/',
-          template: 'main.html',
-          page: new PageOne(),
-          default: true,
-        },
-        {
-          url: '/two',
-          template: 'two.html',
-          page: new PageTwo(),
-        },
-        {
-          url: '/three',
-          template: 'three.html',
-          page: new PageThree(),
-        },
-      ],
-  );
+        ],
+    );
+  })
 </script>
 </body>
 
