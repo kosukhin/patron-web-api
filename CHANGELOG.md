@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/kosukhin/patron-web-api/compare/v1.4.0...v1.5.0) (2024-10-27)
+
+
+### Features
+
+* **main:** добавил экспорт HistoryPageDocument ([11dccc2](https://github.com/kosukhin/patron-web-api/commit/11dccc2b104d953331c2f3a45c6a0b5c489542b2))
+
 ## [1.4.0](https://github.com/kosukhin/patron-web-api/compare/v1.3.0...v1.4.0) (2024-10-27)
 
 
