@@ -7,7 +7,7 @@ declare class HistoryCurrentPage {
     page(guest: GuestType<HistoryPageDocument>): this;
 }
 
-declare class HistoryNewPage implements GuestType<HistoryPageDocument> {
+declare class HistoryNewPage {
     private pageSource;
     constructor(pageSource: SourceType<HistoryPageDocument>);
     receive(value: HistoryPageDocument): this;
