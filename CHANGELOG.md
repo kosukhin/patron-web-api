@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/kosukhin/patron-web-api/compare/v1.5.1...v1.6.0) (2024-10-27)
+
+
+### Features
+
+* **main:** использовал компонент роутера ([e8eef64](https://github.com/kosukhin/patron-web-api/commit/e8eef64d41948bb818bf2285d666c2c89c56d50c))
+
 ### [1.5.1](https://github.com/kosukhin/patron-web-api/compare/v1.5.0...v1.5.1) (2024-10-27)
 
 ## [1.5.0](https://github.com/kosukhin/patron-web-api/compare/v1.4.0...v1.5.0) (2024-10-27)
