@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/kosukhin/patron-web-api/compare/v1.7.0...v1.8.0) (2024-10-31)
+
+
+### Features
+
+* **main:** базовое поведение истории навигации ([b85b650](https://github.com/kosukhin/patron-web-api/commit/b85b65048e824e27d6e3c1867f9fad91bf482513))
+
 ## [1.7.0](https://github.com/kosukhin/patron-web-api/compare/v1.6.0...v1.7.0) (2024-10-31)
 
 
