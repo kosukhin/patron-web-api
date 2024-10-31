@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/kosukhin/patron-web-api/compare/v1.6.0...v1.7.0) (2024-10-31)
+
+
+### Features
+
+* **main:** переосмысление history-api ([375797d](https://github.com/kosukhin/patron-web-api/commit/375797d05d392eabd07ebe3270db25ba052c4c87))
+
 ## [1.6.0](https://github.com/kosukhin/patron-web-api/compare/v1.5.1...v1.6.0) (2024-10-27)
 
 
