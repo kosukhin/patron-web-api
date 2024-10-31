@@ -20,7 +20,13 @@ class HistoryCurrentPage {
 
 class HistoryNewPage {
   receive(value) {
-    history.pushState(value.data ?? {}, value.title, value.url);
+    history.pushState(
+      value.data ?? {
+        date: Date.now()
+      },
+      value.title,
+      value.url
+    );
     return this;
   }
 }
