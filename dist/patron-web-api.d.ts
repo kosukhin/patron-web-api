@@ -8,8 +8,6 @@ declare class HistoryCurrentPage {
 }
 
 declare class HistoryNewPage {
-    private pageSource;
-    constructor(pageSource: SourceType<HistoryPageDocument$1>);
     receive(value: HistoryPageDocument$1): this;
 }
 

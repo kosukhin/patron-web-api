@@ -1,9 +1,6 @@
 class HistoryCurrentPage {
   constructor(pageSource) {
     this.pageSource = pageSource;
-  }
-  page(guest) {
-    this.pageSource.receiving(guest);
     window.addEventListener("popstate", (event) => {
       const { state } = event;
       if (state.url) {
@@ -14,17 +11,16 @@ class HistoryCurrentPage {
         });
       }
     });
+  }
+  page(guest) {
+    this.pageSource.receiving(guest);
     return this;
   }
 }
 
 class HistoryNewPage {
-  constructor(pageSource) {
-    this.pageSource = pageSource;
-  }
   receive(value) {
     history.pushState(value.data ?? {}, value.title, value.url);
-    this.pageSource.receive(value);
     return this;
   }
 }
