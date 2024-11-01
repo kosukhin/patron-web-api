@@ -1,5 +1,5 @@
-import { HistoryCurrentPage } from "./HistoryCurrentPage";
+import { HistoryPoppedPage } from "./HistoryPoppedPage";
 import { HistoryNewPage } from "./HistoryNewPage";
 export * from "./HistoryPageDocument";
 
-export { HistoryNewPage, HistoryCurrentPage };
+export { HistoryNewPage, HistoryPoppedPage };

@@ -1,0 +1,2 @@
+class t{constructor(t){this.pageSource=t}watchPop(){window.addEventListener("popstate",(t=>{const{state:e}=t;e.url&&this.pageSource.receive({url:e.url,title:"",data:t.state})}))}}class e{receive(t){const e=location.href.replace(location.origin,"");return t.url===e||history.pushState(Object.assign({},t.data??{},{...t,date:Date.now()}),t.title,t.url),this}}export{e as HistoryNewPage,t as HistoryPoppedPage};
+//# sourceMappingURL=patron-web-api.min.mjs.map

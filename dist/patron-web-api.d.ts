@@ -1,10 +1,10 @@
+import { SourceType } from 'patron-oop';
 import { HistoryPageDocument as HistoryPageDocument$1 } from 'src/history-api/HistoryPageDocument';
-import { SourceType, GuestType } from 'patron-oop';
 
-declare class HistoryCurrentPage {
+declare class HistoryPoppedPage {
     private pageSource;
     constructor(pageSource: SourceType<HistoryPageDocument$1>);
-    page(guest: GuestType<HistoryPageDocument$1>): this;
+    watchPop(): void;
 }
 
 declare class HistoryNewPage {
@@ -17,4 +17,4 @@ interface HistoryPageDocument {
     data?: unknown;
 }
 
-export { HistoryCurrentPage, HistoryNewPage, type HistoryPageDocument };
+export { HistoryNewPage, type HistoryPageDocument, HistoryPoppedPage };
