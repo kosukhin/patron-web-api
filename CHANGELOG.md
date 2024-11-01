@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/kosukhin/patron-web-api/compare/v1.8.0...v1.9.0) (2024-11-01)
+
+
+### Features
+
+* **main:** правильный обработчик для HistoryNewPage ([458359a](https://github.com/kosukhin/patron-web-api/commit/458359a6336328376bdd549f8c899f9b3144e012))
+
 ## [1.8.0](https://github.com/kosukhin/patron-web-api/compare/v1.7.0...v1.8.0) (2024-10-31)
 
 
