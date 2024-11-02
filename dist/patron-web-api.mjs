@@ -6,7 +6,7 @@ class HistoryPoppedPage {
     window.addEventListener("popstate", (event) => {
       const { state } = event;
       if (state.url) {
-        this.pageSource.receive({
+        this.pageSource.give({
           url: state.url,
           title: "",
           data: event.state
@@ -17,7 +17,7 @@ class HistoryPoppedPage {
 }
 
 class HistoryNewPage {
-  receive(value) {
+  give(value) {
     const correctUrl = location.href.replace(location.origin, "");
     if (value.url === correctUrl) {
       return this;

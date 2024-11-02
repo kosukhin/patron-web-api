@@ -11,17 +11,17 @@
 <div>router</div>
 <ul>
     <li>
-        <button onclick="newPage.receive({url: '/one', title: 'Первая страница'})">
+        <button onclick="newPage.give({url: '/one', title: 'Первая страница'})">
             One
         </button>
     </li>
     <li>
-        <button onclick="newPage.receive({url: '/two', title: 'Вторая страница'})">
+        <button onclick="newPage.give({url: '/two', title: 'Вторая страница'})">
             Two
         </button>
     </li>
     <li>
-        <button onclick="newPage.receive({url: '/three', title: 'Третья страница'})">
+        <button onclick="newPage.give({url: '/three', title: 'Третья страница'})">
             Three
         </button>
     </li>
@@ -46,7 +46,7 @@
       this.element = document.querySelector(selector);
     }
 
-    receive(value) {
+    give(value) {
       this.element.innerText = value;
     }
   }

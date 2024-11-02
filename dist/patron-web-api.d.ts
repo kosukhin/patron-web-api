@@ -1,4 +1,4 @@
-import { SourceType } from 'patron-oop';
+import { SourceType, GuestObjectType } from 'patron-oop';
 import { HistoryPageDocument as HistoryPageDocument$1 } from 'src/history-api/HistoryPageDocument';
 
 declare class HistoryPoppedPage {
@@ -7,8 +7,8 @@ declare class HistoryPoppedPage {
     watchPop(): void;
 }
 
-declare class HistoryNewPage {
-    receive(value: HistoryPageDocument$1): this;
+declare class HistoryNewPage implements GuestObjectType<HistoryPageDocument$1> {
+    give(value: HistoryPageDocument$1): this;
 }
 
 interface HistoryPageDocument {
