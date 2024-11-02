@@ -6,7 +6,7 @@ export class HistoryPoppedPage {
   public watchPop() {
     window.addEventListener("popstate", (event) => {
       const { state } = event;
-      if (state.url) {
+      if (state?.url) {
         give(state.url, this.pageSource);
       }
     });

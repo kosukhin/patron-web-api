@@ -1,2 +1,2 @@
-import{give as t}from"patron-oop";class o{constructor(t){this.pageSource=t}watchPop(){window.addEventListener("popstate",(o=>{const{state:e}=o;e.url&&t(e.url,this.pageSource)}))}}class e{give(t){return t===location.href.replace(location.origin,"")||history.pushState({url:t,date:Date.now()},"Loading...",t),this}}export{e as HistoryNewPage,o as HistoryPoppedPage};
+import{give as t}from"patron-oop";class o{constructor(t){this.pageSource=t}watchPop(){window.addEventListener("popstate",(o=>{const{state:e}=o;e?.url&&t(e.url,this.pageSource)}))}}class e{give(t){return t===location.href.replace(location.origin,"")||history.pushState({url:t,date:Date.now()},"Loading...",t),this}}export{e as HistoryNewPage,o as HistoryPoppedPage};
 //# sourceMappingURL=patron-web-api.min.mjs.map

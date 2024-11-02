@@ -9,7 +9,7 @@ class HistoryPoppedPage {
   watchPop() {
     window.addEventListener("popstate", (event) => {
       const { state } = event;
-      if (state.url) {
+      if (state?.url) {
         patronOop.give(state.url, this.pageSource);
       }
     });
