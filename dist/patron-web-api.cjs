@@ -1,4 +1,6 @@
-import { give } from 'patron-oop';
+'use strict';
+
+var patronOop = require('patron-oop');
 
 class HistoryPoppedPage {
   constructor(pageSource) {
@@ -8,7 +10,7 @@ class HistoryPoppedPage {
     window.addEventListener("popstate", (event) => {
       const { state } = event;
       if (state.url) {
-        give(state.url, this.pageSource);
+        patronOop.give(state.url, this.pageSource);
       }
     });
   }
@@ -32,5 +34,6 @@ class HistoryNewPage {
   }
 }
 
-export { HistoryNewPage, HistoryPoppedPage };
-//# sourceMappingURL=patron-web-api.js.map
+exports.HistoryNewPage = HistoryNewPage;
+exports.HistoryPoppedPage = HistoryPoppedPage;
+//# sourceMappingURL=patron-web-api.cjs.map

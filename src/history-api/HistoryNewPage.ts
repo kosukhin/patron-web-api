@@ -1,19 +1,18 @@
 import { GuestObjectType } from "patron-oop";
-import { HistoryPageDocument } from "src/history-api/HistoryPageDocument";
 
-export class HistoryNewPage implements GuestObjectType<HistoryPageDocument> {
-  public give(value: HistoryPageDocument) {
+export class HistoryNewPage implements GuestObjectType<string> {
+  public give(url: string) {
     const correctUrl = location.href.replace(location.origin, "");
-    if (value.url === correctUrl) {
+    if (url === correctUrl) {
       return this;
     }
     history.pushState(
-      Object.assign({}, value.data ?? {}, {
-        ...value,
+      {
+        url,
         date: Date.now(),
-      }),
-      value.title,
-      value.url,
+      },
+      "Loading...",
+      url,
     );
     return this;
   }
