@@ -51,6 +51,6 @@
     }
   },
   "dependencies": {
-    "patron-oop": "^1.16.0"
+    "patron-oop": "^1.37.0"
   }
 }
