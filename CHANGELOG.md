@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.13.0](https://github.com/kosukhin/patron-web-api/compare/v1.12.0...v1.13.0) (2025-01-22)
+
+
+### Features
+
+* **main:** update dependencies ([cc3b549](https://github.com/kosukhin/patron-web-api/commit/cc3b54922211ffeef31cdb5363a7e531971d26b9))
+
 ## [1.12.0](https://github.com/kosukhin/patron-web-api/compare/v1.11.0...v1.12.0) (2024-11-02)
 
 
