@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.14.0](https://github.com/kosukhin/patron-web-api/compare/v1.13.0...v1.14.0) (2025-03-30)
+
+
+### Features
+
+* **main:** add push-head to scripts ([baddfee](https://github.com/kosukhin/patron-web-api/commit/baddfee1fb834d65514b5841a59288603d4373d3))
+* **main:** rework source classes ([7c4c029](https://github.com/kosukhin/patron-web-api/commit/7c4c029ca45c3a8e000f4e388b115bc5c567f7f9))
+
 ## [1.13.0](https://github.com/kosukhin/patron-web-api/compare/v1.12.0...v1.13.0) (2025-01-22)
 
 
