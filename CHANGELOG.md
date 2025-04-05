@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.16.0](https://github.com/kosukhin/patron-web-api/compare/v1.15.0...v1.16.0) (2025-04-05)
+
+
+### Features
+
+* **main:** added example of routing ([0904756](https://github.com/kosukhin/patron-web-api/commit/09047567f07e38072339a2cb350d98964b224112))
+* **main:** release fetched class ([fca15b6](https://github.com/kosukhin/patron-web-api/commit/fca15b64a4fcaeb43623922109a65366cb4efae4))
+* **main:** work on common design ([704da47](https://github.com/kosukhin/patron-web-api/commit/704da479c21e643375d1bedc3d3e66fd9f11d16d))
+
 ## [1.15.0](https://github.com/kosukhin/patron-web-api/compare/v1.14.0...v1.15.0) (2025-04-05)
 
 
