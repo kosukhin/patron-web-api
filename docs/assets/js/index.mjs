@@ -1,7 +1,13 @@
 import { CurrentPage, Link, Page, Router } from "patron-components";
-import { Patron, SourceWithPool } from "patron-oop";
+import { Patron, PatronOnce, SourceWithPool, sourceOf } from "patron-oop";
 import { StyleFetched } from "../lib/StyleFetched.mjs";
-import { Fetched } from "patron-web-api";
+import {
+  Fetched,
+  Element,
+  Attribute,
+  Log,
+  StyleInstalled,
+} from "patron-web-api";
 
 new StyleFetched(
   "https://raw.githubusercontent.com/kosukhin/patorn-design-system/refs/heads/main/dist/assets/index.css",
@@ -28,6 +34,19 @@ routesTransport.do().give({
   url: `${cleanBasePath}routes.json`,
   asJson: true,
 });
+
+const styleLink = new Attribute(
+  new Element(sourceOf(".style-link")),
+  "data-style",
+);
+const styleTransport = new Fetched(errors);
+styleLink.value(new Log("sl: "));
+styleLink.value((url) => {
+  styleTransport.do().give({ url });
+});
+
+styleTransport.result().value(new Log("st val: "));
+styleTransport.result().value(new PatronOnce(new StyleInstalled()));
 
 routesTransport.result().value(
   new Patron((routes) => {

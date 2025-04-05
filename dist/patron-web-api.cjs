@@ -64,7 +64,84 @@ class Fetched {
   }
 }
 
+class Element {
+  constructor(selector) {
+    this.selector = selector;
+  }
+  value(guest) {
+    patronOop.value(
+      this.selector,
+      new patronOop.GuestCast(guest, (selectorContent) => {
+        const element = document.querySelector(selectorContent);
+        if (element) {
+          patronOop.give(element, guest);
+        } else {
+          const targetNode = document.body;
+          const config = { childList: true, subtree: true };
+          const observer = new MutationObserver((mutationsList) => {
+            for (const mutation of mutationsList) {
+              if (mutation.type === "childList") {
+                const element2 = document.querySelector(selectorContent);
+                if (element2) {
+                  patronOop.give(element2, guest);
+                  observer.disconnect();
+                  break;
+                }
+              }
+            }
+          });
+          observer.observe(targetNode, config);
+        }
+      })
+    );
+    return this;
+  }
+}
+
+class Attribute {
+  constructor(element, attrName, defaultValue = "") {
+    this.element = element;
+    this.attrName = attrName;
+    this.defaultValue = defaultValue;
+  }
+  value(guest) {
+    patronOop.value(
+      this.element,
+      new patronOop.GuestCast(guest, (el) => {
+        patronOop.give(el.getAttribute(this.attrName) || this.defaultValue, guest);
+      })
+    );
+    return this;
+  }
+}
+
+class StyleInstalled {
+  give(value) {
+    const styleEl = document.createElement("style");
+    styleEl.textContent = value;
+    document.head.appendChild(styleEl);
+    return this;
+  }
+}
+
+class Log {
+  constructor(title = "") {
+    this.title = title;
+  }
+  introduction() {
+    return "patron";
+  }
+  give(value) {
+    console.log("LOG: ", this.title, value);
+    return this;
+  }
+}
+
+exports.Attribute = Attribute;
+exports.Element = Element;
 exports.Fetched = Fetched;
 exports.HistoryNewPage = HistoryNewPage;
 exports.HistoryPoppedPage = HistoryPoppedPage;
+exports.Log = Log;
+exports.StyleInstalled = StyleInstalled;
 //# sourceMappingURL=patron-web-api.cjs.map

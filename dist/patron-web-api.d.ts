@@ -1,4 +1,4 @@
-import { GuestType, GuestObjectType, Guest, SourceWithPool } from 'patron-oop';
+import { GuestType, GuestObjectType, Guest, SourceWithPool, SourceObjectType, SourceType } from 'patron-oop';
 
 declare class HistoryPoppedPage {
     private pageSource;
@@ -32,4 +32,29 @@ declare class Fetched<T> {
     result(): SourceWithPool<T>;
 }
 
-export { Fetched, HistoryNewPage, type HistoryPageDocument, HistoryPoppedPage };
+declare class Element implements SourceObjectType<HTMLElement> {
+    private selector;
+    constructor(selector: SourceType<string>);
+    value(guest: GuestType<HTMLElement>): this;
+}
+
+declare class Attribute implements SourceObjectType<string> {
+    private element;
+    private attrName;
+    private defaultValue;
+    constructor(element: SourceType<HTMLElement>, attrName: string, defaultValue?: string);
+    value(guest: GuestType<string>): this;
+}
+
+declare class StyleInstalled implements GuestObjectType<string> {
+    give(value: string): this;
+}
+
+declare class Log implements GuestObjectType<unknown> {
+    private title;
+    constructor(title?: string);
+    introduction(): "guest" | "patron";
+    give(value: unknown): this;
+}
+
+export { Attribute, Element, Fetched, HistoryNewPage, type HistoryPageDocument, HistoryPoppedPage, Log, StyleInstalled };

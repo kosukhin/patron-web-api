@@ -1,4 +1,4 @@
-import { give, SourceWithPool, Guest } from 'patron-oop';
+import { give, SourceWithPool, Guest, value, GuestCast } from 'patron-oop';
 
 class HistoryPoppedPage {
   constructor(pageSource) {
@@ -62,5 +62,78 @@ class Fetched {
   }
 }
 
-export { Fetched, HistoryNewPage, HistoryPoppedPage };
+class Element {
+  constructor(selector) {
+    this.selector = selector;
+  }
+  value(guest) {
+    value(
+      this.selector,
+      new GuestCast(guest, (selectorContent) => {
+        const element = document.querySelector(selectorContent);
+        if (element) {
+          give(element, guest);
+        } else {
+          const targetNode = document.body;
+          const config = { childList: true, subtree: true };
+          const observer = new MutationObserver((mutationsList) => {
+            for (const mutation of mutationsList) {
+              if (mutation.type === "childList") {
+                const element2 = document.querySelector(selectorContent);
+                if (element2) {
+                  give(element2, guest);
+                  observer.disconnect();
+                  break;
+                }
+              }
+            }
+          });
+          observer.observe(targetNode, config);
+        }
+      })
+    );
+    return this;
+  }
+}
+
+class Attribute {
+  constructor(element, attrName, defaultValue = "") {
+    this.element = element;
+    this.attrName = attrName;
+    this.defaultValue = defaultValue;
+  }
+  value(guest) {
+    value(
+      this.element,
+      new GuestCast(guest, (el) => {
+        give(el.getAttribute(this.attrName) || this.defaultValue, guest);
+      })
+    );
+    return this;
+  }
+}
+
+class StyleInstalled {
+  give(value) {
+    const styleEl = document.createElement("style");
+    styleEl.textContent = value;
+    document.head.appendChild(styleEl);
+    return this;
+  }
+}
+
+class Log {
+  constructor(title = "") {
+    this.title = title;
+  }
+  introduction() {
+    return "patron";
+  }
+  give(value) {
+    console.log("LOG: ", this.title, value);
+    return this;
+  }
+}
+
+export { Attribute, Element, Fetched, HistoryNewPage, HistoryPoppedPage, Log, StyleInstalled };
 //# sourceMappingURL=patron-web-api.js.map
