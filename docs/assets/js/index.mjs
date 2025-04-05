@@ -40,12 +40,10 @@ const styleLink = new Attribute(
   "data-style",
 );
 const styleTransport = new Fetched(errors);
-styleLink.value(new Log("sl: "));
 styleLink.value((url) => {
   styleTransport.do().give({ url });
 });
 
-styleTransport.result().value(new Log("st val: "));
 styleTransport.result().value(new PatronOnce(new StyleInstalled()));
 
 routesTransport.result().value(
