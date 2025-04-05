@@ -1,4 +1,4 @@
-import { GuestType, GuestObjectType } from 'patron-oop';
+import { GuestType, GuestObjectType, Guest, SourceWithPool } from 'patron-oop';
 
 declare class HistoryPoppedPage {
     private pageSource;
@@ -16,4 +16,20 @@ interface HistoryPageDocument {
     data?: unknown;
 }
 
-export { HistoryNewPage, type HistoryPageDocument, HistoryPoppedPage };
+interface FetchRequestType extends RequestInit {
+    url: string;
+    asJson: boolean;
+}
+/**
+ * Wrapper around FetchAPI
+ * https://kosukhin.github.io/patron-web-api/#/fetch/fetched
+ */
+declare class Fetched<T> {
+    private errors;
+    private source;
+    constructor(errors: Guest<Error>);
+    do(): Guest<FetchRequestType>;
+    result(): SourceWithPool<T>;
+}
+
+export { Fetched, HistoryNewPage, type HistoryPageDocument, HistoryPoppedPage };

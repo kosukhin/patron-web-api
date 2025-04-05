@@ -18,3 +18,5 @@ sed -i "s/TPL_PATRON_WEB_API/http:\/\/127.0.0.1:5501\/dist\/patron-web-api.min.m
 sed -i "s/TPL_PATRON_COMPONENTS/http:\/\/127.0.0.1:5500\/dist\/patron-components.min.mjs/g" "index-dev.html"
 
 echo "DONE!"
+
+./buildRoutes.sh
