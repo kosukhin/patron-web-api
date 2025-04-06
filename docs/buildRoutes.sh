@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 to_json_array() {
   local dir="$1"
   local output="$2"
